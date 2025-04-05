@@ -1,0 +1,31 @@
+/* Center the heading */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 28px;
+    color: #5a35f0;
+    font-weight: 600;
+  }
+  
+  /* Wraps all cards */
+  .main-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 30px;
+    box-sizing: border-box;
+  }
+  
+  /* Each card-style container */
+  .card {
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+    flex: 1 1 400px;
+    max-width: 700px;
+    min-width: 320px;
+    box-sizing: border-box;
+  }
+  
