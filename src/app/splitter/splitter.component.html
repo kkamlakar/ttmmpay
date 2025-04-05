@@ -1,0 +1,37 @@
+<h2>Dishes and People</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Dish</th>
+      <th>Price</th>
+      <th>People Who Had It</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let dish of dishes">
+      <td>{{ dish.name }}</td>
+      <td>{{ dish.price | currency }}</td>
+      <td>{{ dish.people.join(', ') }}</td> <!-- Join the list of people -->
+    </tr>
+  </tbody>
+</table>
+
+<h2>Add Person to Dish</h2>
+<div>
+  <label for="person">Person:</label>
+  <select id="person" [(ngModel)]="selectedPerson">
+    <option *ngFor="let person of persons" [value]="person.name">{{ person.name }}</option>
+  </select>
+  
+  <label for="dish">Dish:</label>
+  <select id="dish" [(ngModel)]="selectedDish">
+    <option *ngFor="let dish of dishes" [value]="dish.name">{{ dish.name }}</option>
+  </select>
+
+  <button (click)="addPersonToDish(selectedPerson, selectedDish)">Add</button>
+</div>
+<div style="margin-top: 20px;">
+<button (click)="calculateSplitBill()">Calculate Split Bill</button>
+<p *ngIf="totalBill !== null">Total Split Bill: ${{ totalBill }}</p>
+</div>
+
