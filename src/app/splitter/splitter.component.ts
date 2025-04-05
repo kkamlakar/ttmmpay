@@ -15,6 +15,8 @@ export class SplitterComponent implements OnInit {
   dishes: any[] = [];
   selectedPerson: string = '';
   selectedDish: string = '';
+  totalBill: number | null = null;
+  splitBills: { [person: string]: number } = {};
 
   constructor(private dataService: DataService) {}
 
@@ -31,17 +33,28 @@ export class SplitterComponent implements OnInit {
   addPersonToDish(person: string, dish: string) {
     this.dataService.addPersonToDish(person, dish);
   }
-  totalBill: number | null = null;  // Store the total calculated bill
 
   calculateSplitBill() {
-    let sum = 0;
-  
-    for (let dish of this.dishes) {
-      if (dish.people.length > 0) { 
-        sum += dish.price / dish.people.length;  // Split price among consumers
+    this.splitBills = {};
+    this.totalBill = 0;
+
+    for (const dish of this.dishes) {
+      const people = dish.people;
+      if (!people || people.length === 0) continue;
+
+      const splitAmount = dish.price / people.length;
+
+      for (const person of people) {
+        if (!this.splitBills[person]) {
+          this.splitBills[person] = 0;
+        }
+        this.splitBills[person] += splitAmount;
+        this.totalBill += splitAmount;
       }
     }
-  
-    this.totalBill = sum;  // Update total bill
+  }
+
+  objectKeys(obj: any): string[] {
+    return Object.keys(obj);
   }
 }
