@@ -11,7 +11,7 @@
   <tbody>
     <tr *ngFor="let dish of dishes">
       <td>{{ dish.name }}</td>
-      <td>${{ dish.price.toFixed(2) }}</td>
+      <td>{{ dish.price.toFixed(2) }}</td>
       <td>{{ dish.people.join(', ') }}</td>
     </tr>
   </tbody>
@@ -55,7 +55,7 @@
   <h3>Split Bills Per Person:</h3>
   <ul>
     <li *ngFor="let person of objectKeys(splitBills)">
-      {{ person }}: ${{ splitBills[person] | number:'1.2-2' }}
+      {{ person }}: {{ splitBills[person] | number:'1.2-2' }}
     </li>
   </ul>
 </div>

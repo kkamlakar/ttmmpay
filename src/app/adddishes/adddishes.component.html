@@ -1,12 +1,26 @@
-<h3>Add Dishes & Price Here</h3>  
-<br><br>
+<h3>Add Dishes & Price Here</h3>
+<br />
 <div>
-    <input type="text" [(ngModel)]="dishName" placeholder="Enter dish name" />
-    <br><br>
-    <input type="number" [(ngModel)]="dishPrice" placeholder="Enter dish price" />
-    <br><br>
-    <button (click)="addDish()">Add Dish</button>
-  </div>
-  
+  <input type="text" [(ngModel)]="dishName" placeholder="Enter dish name" />
+  <br /><br />
+  <input type="number" [(ngModel)]="dishPrice" placeholder="Enter dish price" />
+  <br /><br />
+  <button (click)="addDish()">Add Dish</button>
+</div>
 
+<hr />
 
+<h3>Added Dishes</h3>
+<table *ngIf="dishes.length > 0; else noDishes" class="dish-table">
+  <tbody>
+    <tr *ngFor="let dish of dishes">
+      <td>{{ dish.name | titlecase }} </td>
+      <td>{{ dish.price }}</td>
+      <td><button (click)="onRemoveDish(dish.name)">Remove</button></td>
+    </tr>
+  </tbody>
+</table>
+
+  <ng-template #noDishes>
+  <p>No dishes added yet 😢</p>
+</ng-template>

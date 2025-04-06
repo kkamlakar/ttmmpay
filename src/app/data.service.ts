@@ -47,4 +47,13 @@ export class DataService {
       this.dishesSource.next([...currentDishes]);
     }
   }
-}
+  removePerson(personName: string) {
+    const currentPersons = this.personsSource.value;
+    const updatedPersons = currentPersons.filter(person => person.name !== personName);
+    this.personsSource.next(updatedPersons);
+  }
+  removeDish(dishName: string) {
+    const currentDishes = this.dishesSource.value;
+    const updatedDishes = currentDishes.filter(dish => dish.name !== dishName);
+    this.dishesSource.next(updatedDishes);
+  }}

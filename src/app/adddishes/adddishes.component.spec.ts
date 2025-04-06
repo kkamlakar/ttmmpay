@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { AdddishesComponent } from './adddishes.component';
+import { AddDishesComponent } from './adddishes.component';
 
 describe('AdddishesComponent', () => {
-  let component: AdddishesComponent;
-  let fixture: ComponentFixture<AdddishesComponent>;
+  let component: AddDishesComponent;
+  let fixture: ComponentFixture<AddDishesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AdddishesComponent]
+      imports: [addEventListener]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AdddishesComponent);
+    fixture = TestBed.createComponent(AddDishesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

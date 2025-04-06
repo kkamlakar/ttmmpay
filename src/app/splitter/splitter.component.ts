@@ -15,7 +15,6 @@ export class SplitterComponent implements OnInit {
   dishes: any[] = [];
   selectedPerson: string = '';
   selectedDish: string = '';
-  totalBill: number | null = null;
   splitBills: { [person: string]: number } = {};
 
   constructor(private dataService: DataService) {}
@@ -31,12 +30,20 @@ export class SplitterComponent implements OnInit {
   }
 
   addPersonToDish(person: string, dish: string) {
+    const targetDish = this.dishes.find(d => d.name === dish);
+    if (!targetDish) return;
+  
+    // 💡 Prevent adding the same person twice
+    if (targetDish.people.includes(person)) {
+      console.log(`{person} is already added to {dish}. Skipping duplicate.`);
+      return;
+    }
+  
     this.dataService.addPersonToDish(person, dish);
   }
-
+  
   calculateSplitBill() {
     this.splitBills = {};
-    this.totalBill = 0;
 
     for (const dish of this.dishes) {
       const people = dish.people;
@@ -49,7 +56,6 @@ export class SplitterComponent implements OnInit {
           this.splitBills[person] = 0;
         }
         this.splitBills[person] += splitAmount;
-        this.totalBill += splitAmount;
       }
     }
   }

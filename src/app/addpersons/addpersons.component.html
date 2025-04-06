@@ -1,10 +1,25 @@
-<h3>Add Persons Here</h3>  
-<br><br>
+<h3>Add Persons Here</h3>
+
 <div>
-    <input type="text" [(ngModel)]="personName" placeholder="Enter person's name" />
-    <br><br>
-    <button (click)="addPerson()">Add Person</button>
-  </div>
-  
+  <input type="text" [(ngModel)]="personName" placeholder="Enter person's name" #personInput />
+  <br><br>
+  <button (click)="addPerson()">Add Person</button>
+</div>
+
+<hr />
+
+<h3>People Added:</h3>
+<table *ngIf="persons.length > 0; else noPeople" class="list-table">
+  <tbody>
+    <tr *ngFor="let person of persons">
+      <td>{{ person.name |titlecase }}</td>
+      <td><button (click)="onRemovePerson(person.name)">Remove</button></td>
+    </tr>
+  </tbody>
+</table>
 
 
+
+<ng-template #noPeople>
+  <p>No one added yet 💔</p>
+</ng-template>
