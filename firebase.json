@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/ttmmpay",
+    "public": "dist/ttmmpay/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -12,5 +12,5 @@
         "destination": "/index.html"
       }
     ]
-  }
+  } 
 }

@@ -56,4 +56,5 @@ export class DataService {
     const currentDishes = this.dishesSource.value;
     const updatedDishes = currentDishes.filter(dish => dish.name !== dishName);
     this.dishesSource.next(updatedDishes);
-  }}
+  }
+}
